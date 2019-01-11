@@ -1,0 +1,59 @@
+replicaCount: 1
+
+image:
+  repository: shiftedreality/magento-kubernetes-components-php
+  tag: 7.1-fpm
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30101
+
+persistence:
+  nfs:
+    enabled: false
+
+monolith:
+  name: magento2
+  volumeHostPath: /Users/admin/Projects/magento/sources
+  service:
+    type: NodePort
+    ports:
+      nodePort: 30101
+      port: 80
+  deployment:
+    nginxImage: nginx:1.9
+    codeImage: shiftedreality/magento-kubernetes-components-php
+    imageTag: 7.1-fpm
+    imagePullPolicy: Always
+global:
+  monolith:
+    mysqlHost: magento-mysql
+
+checkout:
+  enabled: true
+resources: {}
+  # Uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+mysql:
+  fullname: magento-mysql
+  initializationFiles:
+    first-db.sql: |- 
+        CREATE DATABASE IF NOT EXISTS magento DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
