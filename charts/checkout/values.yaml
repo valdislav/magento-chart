@@ -19,7 +19,6 @@ persistence:
 
 checkout:
   name: magento2-checkout
-  volumeHostPath: /Users/admin/Projects/charts/checkout/sources
   service:
     type: NodePort
     ports:

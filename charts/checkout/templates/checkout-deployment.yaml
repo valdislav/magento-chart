@@ -45,5 +45,5 @@ spec:
             claimName: {{ include "checkout.fullname" . }}-claim
         {{- else }}
           hostPath:
-            path: {{.Values.checkout.volumeHostPath}}
+            path: {{ include "checkout.volumeHostPath" . }}
         {{- end -}}
