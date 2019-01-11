@@ -19,7 +19,6 @@ persistence:
 
 monolith:
   name: magento2
-  volumeHostPath: /Users/admin/Projects/magento/sources
   service:
     type: NodePort
     ports:
