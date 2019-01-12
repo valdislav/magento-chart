@@ -18,17 +18,20 @@ persistence:
     enabled: false
 
 checkout:
-  name: magento2-checkout
-  service:
-    type: NodePort
-    ports:
-      nodePort: 30102
-      port: 80
-  deployment:
-    nginxImage: nginx:1.9
-    codeImage: shiftedreality/magento-kubernetes-components-php
-    imageTag: 7.1-fpm
-    imagePullPolicy: Always
+    name: magento2-checkout
+    service:
+      type: NodePort
+      ports:
+        nodePort: 30102
+        port: 80
+    deployment:
+      nginxImage: nginx:1.9
+      codeImage: shiftedreality/magento-kubernetes-components-php
+      imageTag: 7.1-fpm
+      imagePullPolicy: Always
+global:
+  checkout:
+    volumeHostPath: /Users/admin/Projects/charts/checkout/sources
 
 resources: {}
   # Uncomment the following

@@ -32,6 +32,7 @@ monolith:
 global:
   monolith:
     mysqlHost: magento-mysql
+    volumeHostPath: /Users/admin/Projects/magento/sources
 
 checkout:
   enabled: true
